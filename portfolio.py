@@ -112,7 +112,7 @@ with c3:
 
 st.markdown("---")
 
-# --- 6. AI CHATBOT SECTION (NEW!) ---
+# --- 6. AI CHATBOT SECTION (Smart Logic) ---
 st.markdown("## 🤖 Chat with Netra AI (Demo)")
 st.write("Ask me about Malli's skills, pricing, or projects!")
 
@@ -141,11 +141,10 @@ if prompt := st.chat_input("Type here (e.g., 'What are your skills?')..."):
         
     elif "skill" in p_lower or "technology" in p_lower:
         response = "Malli is an expert in: \n- **Python & Streamlit** (Web Apps) \n- **Cyber Security** (AES-256, Honeypots) \n- **IoT & Electronics** (Arduino, Sensors)"
-        
-       # ఇక్కడ "rupee", "rate", "amount" లాంటి పదాలు యాడ్ చేశాను
+    
+    # PRICE LOGIC (Updated for Rupees/INR)
     elif any(x in p_lower for x in ["price", "cost", "charge", "rupee", "inr", "rate", "amount", "money"]):
-        response = "Malli offers **Rapid Prototyping starting at just ₹4000 ($50)**. \nFor students, simple projects start at **₹500 - ₹1000**."elif "price" in p_lower or "cost" in p_lower or "charge" in p_lower:
-        response = "Malli offers **Rapid Prototyping starting at just $50 (₹4000)**. The final price depends on the project complexity."
+        response = "Malli offers **Rapid Prototyping starting at just ₹4000 ($50)**. \nFor students, simple projects start at **₹500 - ₹1000**."
         
     elif "contact" in p_lower or "email" in p_lower or "hire" in p_lower:
         response = "You can hire him immediately! \n📧 Email: **mallikarjunareddyk48@gmail.com** \n🔗 Or use the Contact Form below."
@@ -171,4 +170,3 @@ with st.form("contact_form"):
     st.text_area("How can I help you?")
     if st.form_submit_button("🚀 Send Message"):
         st.success("Thank you! I will get back to you within 2 hours.")
-
