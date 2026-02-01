@@ -19,7 +19,7 @@ st.markdown("""
         color: #ffffff;
     }
     
-    /* Glassmorphism Cards (అద్దం లాంటి బాక్సులు) */
+    /* Glassmorphism Cards */
     .glass-card {
         background: rgba(255, 255, 255, 0.05);
         border-radius: 15px;
@@ -56,7 +56,6 @@ with st.sidebar:
     st.title("Mallikarjuna Reddy")
     st.write("📍 **ECE Student & AI Innovator**")
     st.markdown("---")
-    # FIX IS HERE (కింద లైన్ సరిచేసాను)
     st.write("📧 mallikarjunareddyk48@gmail.com") 
     st.write("🔗 [LinkedIn Profile](https://www.linkedin.com/in/k-malli-karjuna-reddy-ba2a54314)")
     st.write("🐙 [GitHub Profile](#)")
@@ -82,18 +81,13 @@ st.markdown("---")
 
 # --- 5. CORE COMPETENCIES ---
 st.markdown("## ⚡ Core Competencies & Services")
-st.write("Leveraging advanced technology to solve complex business problems.")
-
-# Columns for the skills
 c1, c2, c3 = st.columns(3)
 
 with c1:
     st.markdown("""
     <div class="glass-card">
         <h3>🚀 AI Product Development</h3>
-        <p style='font-size: 14px; opacity: 0.8;'><b>Focus: Rapid Prototyping (MVP)</b></p>
-        <p>I transform abstract concepts into <b>deployable market-ready applications</b>. Specializing in high-speed development cycles (24-Hours) to reduce time-to-market.</p>
-        <hr style='border-color: rgba(255,255,255,0.1); margin: 10px 0;'>
+        <p>I transform abstract concepts into <b>deployable market-ready applications</b> in 24 hours.</p>
         <p><b>Tech Stack:</b> Streamlit, Generative AI, Python</p>
     </div>
     """, unsafe_allow_html=True)
@@ -102,9 +96,7 @@ with c2:
     st.markdown("""
     <div class="glass-card">
         <h3>🛡️ Cybersecurity Architecture</h3>
-        <p style='font-size: 14px; opacity: 0.8;'><b>Focus: Active Defense Strategy</b></p>
-        <p>Designing robust security frameworks. I implement <b>'Offensive Defense'</b> mechanisms (Honeypots) to identify and neutralize threats in real-time, going beyond simple firewalls.</p>
-        <hr style='border-color: rgba(255,255,255,0.1); margin: 10px 0;'>
+        <p>Designing robust security frameworks and <b>'Offensive Defense'</b> mechanisms (Honeypots).</p>
         <p><b>Tech Stack:</b> AES-256, PyCryptodome, Network Forensics</p>
     </div>
     """, unsafe_allow_html=True)
@@ -113,53 +105,67 @@ with c3:
     st.markdown("""
     <div class="glass-card">
         <h3>⚙️ Algorithmic Automation</h3>
-        <p style='font-size: 14px; opacity: 0.8;'><b>Focus: Business Logic Optimization</b></p>
-        <p>Engineering intelligent bots to automate repetitive workflows. I build custom scripts that integrate APIs (Stock data, Crypto, Messaging) to drive <b>operational efficiency</b>.</p>
-        <hr style='border-color: rgba(255,255,255,0.1); margin: 10px 0;'>
+        <p>Engineering intelligent bots to automate repetitive workflows and integrate APIs.</p>
         <p><b>Tech Stack:</b> Telegram API, Pandas, Cloud Functions</p>
     </div>
     """, unsafe_allow_html=True)
 
 st.markdown("---")
 
-# --- 6. FEATURED STARTUP (Netra AI) ---
-st.markdown("## 🏆 Featured Project: Netra AI")
+# --- 6. AI CHATBOT SECTION (NEW!) ---
+st.markdown("## 🤖 Chat with Netra AI (Demo)")
+st.write("Ask me about Malli's skills, pricing, or projects!")
 
-col_a, col_b = st.columns([1, 1])
+# Chat History Setup
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-with col_a:
-    st.image("https://media.istockphoto.com/id/1329766943/photo/digital-padlock-icon-cyber-security-network-and-data-protection-technology-on-virtual.jpg?s=612x612&w=0&k=20&c=N_2eM4BwA9d4Q8c1H4f3h3h4h3h4h3h4", use_column_width=True)
+# Display previous messages
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-with col_b:
-    st.markdown("""
-    <div class="glass-card">
-        <h3>👁️ Active Defense System</h3>
-        <p>Netra AI is a <b>counter-measure security system</b> designed to detect human error.</p>
-        <ul>
-            <li><b>Problem:</b> Traditional firewalls can't stop phishing/human mistakes.</li>
-            <li><b>Solution:</b> A Honeypot-based trap that tracks hacker IP & Location.</li>
-            <li><b>Status:</b> Prototype Ready & Tested.</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
-    if st.button("View Live Demo"):
-        st.toast("Redirecting to Netra AI Demo...")
+# User Input Logic
+if prompt := st.chat_input("Type here (e.g., 'What are your skills?')..."):
+    # 1. User Message Display
+    st.chat_message("user").markdown(prompt)
+    st.session_state.messages.append({"role": "user", "content": prompt})
+
+    # 2. AI Logic (Smart Responses)
+    response = "I am currently in Demo Mode. Please email Malli for details."
+    
+    p_lower = prompt.lower()
+    
+    if "hello" in p_lower or "hi" in p_lower:
+        response = "Hello! I am **Netra AI**, Malli's virtual assistant. How can I help you?"
+        
+    elif "skill" in p_lower or "technology" in p_lower:
+        response = "Malli is an expert in: \n- **Python & Streamlit** (Web Apps) \n- **Cyber Security** (AES-256, Honeypots) \n- **IoT & Electronics** (Arduino, Sensors)"
+        
+    elif "price" in p_lower or "cost" in p_lower or "charge" in p_lower:
+        response = "Malli offers **Rapid Prototyping starting at just $50 (₹4000)**. The final price depends on the project complexity."
+        
+    elif "contact" in p_lower or "email" in p_lower or "hire" in p_lower:
+        response = "You can hire him immediately! \n📧 Email: **mallikarjunareddyk48@gmail.com** \n🔗 Or use the Contact Form below."
+        
+    elif "netra" in p_lower:
+        response = "**Netra AI** is Malli's flagship security project that uses active defense to trap hackers. It's built with Python."
+
+    # 3. Assistant Message Display
+    with st.chat_message("assistant"):
+        st.markdown(response)
+    st.session_state.messages.append({"role": "assistant", "content": response})
 
 st.markdown("---")
 
 # --- 7. CONTACT FORM ---
 st.markdown("## 📬 Let's Build Something Great")
-
 with st.form("contact_form"):
     c_name, c_email = st.columns(2)
     with c_name:
         st.text_input("Your Name")
     with c_email:
         st.text_input("Your Email")
-    
     st.text_area("How can I help you?")
-    
-    submit = st.form_submit_button("🚀 Send Message")
-    if submit:
+    if st.form_submit_button("🚀 Send Message"):
         st.success("Thank you! I will get back to you within 2 hours.")
-        st.balloons()
