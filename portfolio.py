@@ -56,7 +56,8 @@ with st.sidebar:
     st.title("Mallikarjuna Reddy")
     st.write("📍 **ECE Student & AI Innovator**")
     st.markdown("---")
-    st.write("📧 mallikarjunareddyk48@gmail.com")")
+    # FIX IS HERE (కింద లైన్ సరిచేసాను)
+    st.write("📧 mallikarjunareddyk48@gmail.com") 
     st.write("🔗 [LinkedIn Profile](https://www.linkedin.com/in/k-malli-karjuna-reddy-ba2a54314)")
     st.write("🐙 [GitHub Profile](#)")
     st.markdown("---")
@@ -66,7 +67,7 @@ with st.sidebar:
 col1, col2 = st.columns([2, 1])
 
 with col1:
-    st.markdown("# 👋 Hello, I'm Mallikarjuna reddy")
+    st.markdown("# 👋 Hello, I'm Mallikarjuna Reddy")
     st.markdown("### I Architect **Secure AI Systems** & **Rapid Web Products**.")
     st.write("""
     I am an Electronics Engineer (ECE) bridging the gap between **Hardware Logic** and **Software Intelligence**.
@@ -79,7 +80,7 @@ with col2:
 
 st.markdown("---")
 
-# --- 5. CORE COMPETENCIES (నీ కొత్త స్కిల్స్ సెక్షన్) ---
+# --- 5. CORE COMPETENCIES ---
 st.markdown("## ⚡ Core Competencies & Services")
 st.write("Leveraging advanced technology to solve complex business problems.")
 
@@ -161,5 +162,4 @@ with st.form("contact_form"):
     submit = st.form_submit_button("🚀 Send Message")
     if submit:
         st.success("Thank you! I will get back to you within 2 hours.")
-
         st.balloons()
