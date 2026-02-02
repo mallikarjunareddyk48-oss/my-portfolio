@@ -170,3 +170,42 @@ with st.form("contact_form"):
     st.text_area("How can I help you?")
     if st.form_submit_button("🚀 Send Message"):
         st.success("Thank you! I will get back to you within 2 hours.")
+        import PIL.Image
+
+# --- 9. SMART ECE PROJECT: AI VISION ---
+st.markdown("---")
+st.markdown("## 📷 Smart ECE: Component Scanner")
+st.write("Upload a photo of any electronic component (e.g., Resistor, Capacitor, IC), and Netra AI will identify it for you!")
+
+# File Uploader
+uploaded_file = st.file_uploader("Upload Component Image...", type=["jpg", "png", "jpeg"])
+
+if uploaded_file is not None:
+    # 1. Show the Image
+    image = PIL.Image.open(uploaded_file)
+    st.image(image, caption="Uploaded Component", use_column_width=True)
+    
+    # 2. Analyze Button
+    if st.button("🔍 Identify Component"):
+        try:
+            with st.spinner("Analyzing circuitry..."):
+                # Vision Model Setup
+                vision_model = genai.GenerativeModel('gemini-1.5-flash')
+                
+                # Prompt for ECE context
+                vision_prompt = """
+                Analyze this image. If it is an electronic component:
+                1. Name the component.
+                2. Explain its function in simple terms.
+                3. Give a real-world use case.
+                
+                If it is NOT an electronic component, strictly say "This does not look like an electronic component."
+                """
+                
+                # Generate Response
+                response = vision_model.generate_content([vision_prompt, image])
+                st.markdown(response.text)
+                
+        except Exception as e:
+            st.error(f"Error: {e}")
+
