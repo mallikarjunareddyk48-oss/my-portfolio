@@ -1,4 +1,6 @@
 import streamlit as st
+import google.generativeai as genai
+import PIL.Image 
 
 # --- 1. PAGE CONFIGURATION ---
 st.set_page_config(page_title="Malli | AI Architect", page_icon="👨‍💻", layout="wide")
@@ -208,4 +210,60 @@ if uploaded_file is not None:
                 
         except Exception as e:
             st.error(f"Error: {e}")
+            import PIL.Image
+
+# --- 9. SMART ECE PROJECT: AI VISION (With Live Camera) ---
+st.markdown("---")
+st.markdown("## 📷 Smart ECE: Component Scanner")
+st.write("Scan any electronic component (Resistor, IC, Sensor) using your camera or upload a photo!")
+
+# Option to choose Input Method
+input_method = st.radio("Choose Input Method:", ("📷 Live Camera", "📂 Upload Image"), horizontal=True)
+
+image_data = None
+
+if input_method == "📷 Live Camera":
+    # Camera Input
+    camera_image = st.camera_input("Take a picture of the component")
+    if camera_image is not None:
+        image_data = camera_image
+        
+elif input_method == "📂 Upload Image":
+    # File Uploader
+    uploaded_file = st.file_uploader("Upload Component Image...", type=["jpg", "png", "jpeg"])
+    if uploaded_file is not None:
+        image_data = uploaded_file
+
+# --- AI ANALYSIS LOGIC ---
+if image_data is not None:
+    # 1. Show the Image
+    image = PIL.Image.open(image_data)
+    st.image(image, caption="Analyzed Image", use_column_width=True)
+    
+    # 2. Analyze Button
+    if st.button("🔍 Identify Component"):
+        try:
+            with st.spinner("Netra AI is scanning circuitry..."):
+                # Vision Model Setup (Using Flash model for speed)
+                vision_model = genai.GenerativeModel('gemini-1.5-flash')
+                
+                # ECE Specific Prompt
+                vision_prompt = """
+                You are an expert Electronics Engineer. Analyze this image.
+                1. Identify the electronic component shown (e.g., Arduino, Resistor, Capacitor, IC).
+                2. Explain its main function briefly.
+                3. Provide a pin configuration or value if visible (e.g., color code for resistor).
+                4. Give one real-world application.
+                
+                If the image is NOT an electronic component, reply: "⚠️ This does not look like an electronic component."
+                """
+                
+                # Generate Response
+                response = vision_model.generate_content([vision_prompt, image])
+                st.success("✅ Identification Complete!")
+                st.markdown(response.text)
+                
+        except Exception as e:
+            st.error(f"AI Error: {e}")
+
 
