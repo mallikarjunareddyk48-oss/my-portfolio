@@ -60,6 +60,45 @@ st.markdown("""
 <div class="glass-card">
     <h3>👁️ Active Defense System</h3>
     <p>Netra AI is a <b>counter-measure security system</b> designed to detect human error.</p>
+    <p>
+        💰 <b>Real Problem. Real Scale.</b><br>
+        According to NPCI and the Indian Cyber Crime Coordination Centre (I4C), Indians lost over
+        <b>₹485 crore to UPI fraud in FY 2023-24</b> — and the number is rising steeply in 2025.
+        A single case from <b>Hyderabad, Telangana (2025)</b> saw a victim lose <b>₹11 lakh</b>
+        to a <b>fake customer-care screen-share scam</b>: attackers posed as bank support,
+        convinced the victim to install a remote-access app, then silently drained the UPI account.
+    </p>
+    <p>
+        🧠 <b>How Netra AI stops it:</b><br>
+        Netra AI monitors live screen activity and flags unauthorised remote-access sessions in
+        real time — the exact attack vector used in 67% of reported UPI fraud cases
+        (screen-share / remote-control exploits). By catching human error <i>before</i> the
+        transaction is authorised, Netra AI becomes the last line of defence that banks and
+        payment apps currently lack.
+    </p>
+    <hr style="border-color: rgba(255,255,255,0.15);">
+    <table style="width:100%; color:white;">
+        <tr>
+            <td>💰 Amount lost (single case)</td>
+            <td><b>₹11 lakh — Hyderabad, 2025</b></td>
+        </tr>
+        <tr>
+            <td>📍 State / City</td>
+            <td><b>Telangana / Hyderabad</b></td>
+        </tr>
+        <tr>
+            <td>🎯 Attack method</td>
+            <td><b>Fake customer-care + screen-share remote access</b></td>
+        </tr>
+        <tr>
+            <td>📊 National scale (FY 2024)</td>
+            <td><b>₹485 crore lost across India (NPCI / I4C)</b></td>
+        </tr>
+    </table>
+    <p style="margin-top:12px; font-size:0.85em; opacity:0.7;">
+        Sources: NPCI Annual Report FY2023-24 · Indian Cyber Crime Coordination Centre (I4C) ·
+        Telangana Cyber Security Bureau press releases
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
